@@ -32,7 +32,7 @@ namespace ShopService
 
         public string InsertData(int controlNumber, string paymentResponse, string description)
         {
-            SqlConnection con = new SqlConnection(@"""Data Source =.;Initial Catalog =""DBname"";User ID=""User Name"";Password=""Password""");
+            SqlConnection con = new SqlConnection(@"Data Source = GMTWKS13\GMTWKS13DB;Initial Catalog =CRIMShopManagement;User ID=User Name;Password=Password");
             SqlCommand cmd = new SqlCommand("SP_InsertProc", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
