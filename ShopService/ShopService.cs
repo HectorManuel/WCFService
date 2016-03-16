@@ -17,25 +17,14 @@ namespace ShopService
             return string.Format("You entered: {0}", value);
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
-        }
-
         public string InsertData(int controlNumber, string paymentResponse, string description)
         {
-            SqlConnection con = new SqlConnection(@"Data Source = HECTOR_CUSTOMS\MYOWNSQLSERVER;Initial Catalog =CRIMShopManagement;Trusted_Connection=Yes;");
-            //SqlConnection con = new SqlConnection(@"Data Source = GMTWKS13\GMTWKS13DB;Initial Catalog =CRIMShopManagement;User ID=User Name;Password=Password");
-            SqlCommand cmd = new SqlCommand("SP_InsertProc", con);
-            cmd.CommandType = CommandType.StoredProcedure;
+            //SqlConnection con = new SqlConnection(@"Data Source = HECTOR_CUSTOMS\MYOWNSQLSERVER;Initial Catalog =CRIMShopManagement;Trusted_Connection=Yes;");
+            SqlConnection con = new SqlConnection(@"Data Source = GMTWKS13\GMTWKS13DB;Initial Catalog = CRIMShopManagement;Trusted_Connection=Yes;");
+            string queryString = "INSERT into dbo.Orders (ControlNumber,PaymentRespone,Description)" +
+                                "VALUES (@controlNumber,@response,@description)";
+            SqlCommand cmd = new SqlCommand(queryString, con);
+            cmd.CommandType = CommandType.Text;
 
             cmd.Parameters.AddWithValue("@controlNumber", controlNumber);
             cmd.Parameters.AddWithValue("@response", paymentResponse);
