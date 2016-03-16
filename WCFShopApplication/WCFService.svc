@@ -1,0 +1,3 @@
+﻿<%@ServiceHost language="C#" debug="true"  
+Service="ShopService.ShopService"  
+Factory="System.ServiceModel.Activation.WebScriptServiceHostFactory"%>  
